@@ -166,7 +166,7 @@ class LlamaAttention(nn.Module):
         self.num_heads = config.num_attention_heads
         self.head_dim = self.hidden_size // self.num_heads
         self.max_position_embeddings = config.max_position_embeddings
-        self.attention_dropout = nn.Dropout(0.1) # Thacio
+        self.attention_dropout = nn.Dropout(config.dropout_rate) # Thacio
 
         if (self.head_dim * self.num_heads) != self.hidden_size:
             raise ValueError(
@@ -261,7 +261,7 @@ class LlamaDecoderLayer(nn.Module):
         )
         self.input_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         self.post_attention_layernorm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
-        self.hidden_dropout = 0.1 # Thacio
+        self.hidden_dropout = config.dropout_rate # Thacio
 
     def forward(
         self,

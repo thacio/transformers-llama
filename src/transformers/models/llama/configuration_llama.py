@@ -95,6 +95,7 @@ class LlamaConfig(PretrainedConfig):
         pad_token_id=0,
         bos_token_id=1,
         eos_token_id=2,
+        dropout_rate=0.1,
         tie_word_embeddings=False,
         **kwargs,
     ):
@@ -108,6 +109,7 @@ class LlamaConfig(PretrainedConfig):
         self.initializer_range = initializer_range
         self.rms_norm_eps = rms_norm_eps
         self.use_cache = use_cache
+        self.dropout_rate = dropout_rate
         super().__init__(
             pad_token_id=pad_token_id,
             bos_token_id=bos_token_id,

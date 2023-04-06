@@ -300,7 +300,7 @@ class LlamaDecoderLayer(nn.Module):
             use_cache=use_cache,
         )
                 
-        hidden_states = torch.nn.functional.dropout(hidden_states, p=self.hidden_dropout, training=training) # Thacio
+        hidden_states = torch.nn.functional.dropout(hidden_states, p=self.hidden_dropout, training=self.training) # Thacio
         
         
         hidden_states = residual + hidden_states
@@ -310,7 +310,7 @@ class LlamaDecoderLayer(nn.Module):
         hidden_states = self.post_attention_layernorm(hidden_states)
         hidden_states = self.mlp(hidden_states)
 
-        hidden_states = torch.nn.functional.dropout(hidden_states, p=self.hidden_dropout, training=training) # Thacio
+        hidden_states = torch.nn.functional.dropout(hidden_states, p=self.hidden_dropout, training=self.training) # Thacio
         
         
         hidden_states = residual + hidden_states

@@ -643,7 +643,9 @@ class PreTrainedTokenizerFast(PreTrainedTokenizerBase):
         """
         tokenizer_json = json.loads(self._tokenizer.to_str())
         # Remove added tokens for now (uses IDs of tokens)
+        print('aeeeeeeee')
         added_tokens = tokenizer_json.pop("added_tokens")
+        print(added_tokens)
         # Remove post processor for now (uses IDs of tokens)
         post_processor = tokenizer_json.pop("post_processor")
 

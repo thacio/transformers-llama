@@ -710,6 +710,7 @@ class PreTrainedTokenizerFast(PreTrainedTokenizerBase):
         if tokenizer_json["pre_tokenizer"]["type"] == "ByteLevel":
             kwargs["initial_alphabet"] = pre_tokenizers_fast.ByteLevel.alphabet()
 
+        print('special tokens: ',special_tokens)
         trainer_class = MODEL_TO_TRAINER_MAPPING[tokenizer_json["model"]["type"]]
         trainer = trainer_class(vocab_size=vocab_size, special_tokens=special_tokens, **kwargs)
         tokenizer.train_from_iterator(text_iterator, length=length, trainer=trainer)

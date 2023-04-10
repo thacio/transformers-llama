@@ -642,10 +642,9 @@ class PreTrainedTokenizerFast(PreTrainedTokenizerBase):
 
         """
         tokenizer_json = json.loads(self._tokenizer.to_str())
-        # Remove added tokens for now (uses IDs of tokens)
-        print('aeeeeeeee')
+        # Remove added tokens for now (uses IDs of tokens)        
         added_tokens = tokenizer_json.pop("added_tokens")
-        print(added_tokens)
+        added_tokens=[{'id': 0, 'content': '<pad>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}, {'id': 1, 'content': '</s>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}, {'id': 2, 'content': '<unk>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}]
         # Remove post processor for now (uses IDs of tokens)
         post_processor = tokenizer_json.pop("post_processor")
 

@@ -644,7 +644,7 @@ class PreTrainedTokenizerFast(PreTrainedTokenizerBase):
         tokenizer_json = json.loads(self._tokenizer.to_str())
         # Remove added tokens for now (uses IDs of tokens)        
         added_tokens = tokenizer_json.pop("added_tokens")
-        added_tokens=[{'id': 0, 'content': '<pad>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}, {'id': 1, 'content': '</s>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}, {'id': 2, 'content': '<unk>', 'single_word': False, 'lstrip': False, 'rstrip': False, 'normalized': False, 'special': True}]
+        
         # Remove post processor for now (uses IDs of tokens)
         post_processor = tokenizer_json.pop("post_processor")
 
@@ -710,7 +710,6 @@ class PreTrainedTokenizerFast(PreTrainedTokenizerBase):
         if tokenizer_json["pre_tokenizer"]["type"] == "ByteLevel":
             kwargs["initial_alphabet"] = pre_tokenizers_fast.ByteLevel.alphabet()
 
-        print('special tokens: ',special_tokens)
         trainer_class = MODEL_TO_TRAINER_MAPPING[tokenizer_json["model"]["type"]]
         trainer = trainer_class(vocab_size=vocab_size, special_tokens=special_tokens, **kwargs)
         tokenizer.train_from_iterator(text_iterator, length=length, trainer=trainer)
